@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.container h1{
+    position: fixed;
+}
+
+.btnList{
+    display: flex;
+    margin-top: 10%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.btn{
+    display: flex;
+    padding: 20px;
+}
+
+.btn button{
+    padding: 10px 40px ;
+    background-color: rgb(89, 151, 192);
+    border: 2px solid rgba(78, 147, 194, 0.596);
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.btn button:hover{
+    background-color: white;
+    color: black;
+    
+}
+
+
+.nextYears{
+    display: none;
+}

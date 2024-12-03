@@ -1,19 +1,43 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+use App\Controller\HomeController;
+use App\Controller\LoginController;
+use App\Controller\PlurianualController;
 
-$request = $_SERVER['REQUEST_URI'];
+session_start();
+require_once './src/controller/loginController.php';
+require_once './src/controller/homeController.php';
+require_once './src/controller/plurianualController.php';
 
-// Definir rotas
-if ($request == '/') {
-    require './src/view/login.php';
-} elseif ($request == '/home') {
-    require './src/view/home.php';
-} elseif ($request == '/contact') {
-    require 'contact.php';
-} else {
-    http_response_code(404);
-    echo "Página não encontrada.";
+
+
+
+
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+//controlllers
+$loginController = new LoginController();
+$homeController = new HomeController();
+$plurianualController = new PlurianualController();
+
+
+
+
+switch ($action) {
+    case 'login':
+        $loginController->index();
+        break;
+    case 'logout':
+        $homeController->index();
+        break;
+    case 'plurianual':
+        $plurianualController->index();
+        break;
+    default:
+        if (!isset($_SESSION['user'])) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
 }
+?>
