@@ -1,141 +1,138 @@
 CREATE TABLE "investimentos"(
     "id_investimento" SERIAL,
-    "id_diretoria" INTEGER NOT NULL,
-    "id_centro_custo" INTEGER NOT NULL,
+    "id_diretoria" INTEGER  ,
     "prazo_entrega_gsi" DATE NULL,
-    "id_setor_responsavel" INTEGER NOT NULL,
-    "id_grupo" INTEGER NOT NULL,
-    "id_conta_contabil" INTEGER NOT NULL,
-    "descricao" VARCHAR(250) NOT NULL,
-    "id_contrato" INTEGER NOT NULL,
-    "id_status" INTEGER NOT NULL,
-    "numero_documento" VARCHAR(80) NULL,
-    "data_reajuste" DATE NULL,
-    "data_primeiro_desembolso" DATE NOT NULL,
-    "id_situacao" INTEGER NOT NULL,
-    "processo_sei" VARCHAR(20) NULL,
-    "total_atraso" FLOAT(53) NOT NULL,
-    "estrategico" CHAR(1) NULL,
-    "data_calculo_atraso" DATE NOT NULL,
-    "total_ano" FLOAT(53) NULL,
-    "total_contratado" FLOAT(53) NULL,
+    "id_centro_custo" INTEGER   ,
+    "id_setor_responsavel" INTEGER  ,
+    "id_conta_contabil" INTEGER ,
+    "id_grupo" INTEGER  ,
+    "descricao" VARCHAR(250)    ,
+    "id_status" INTEGER ,
+    "data_reajuste" DATE ,
+    "numero_documento" VARCHAR(80) ,
+    "data_primeiro_desembolso" DATE  ,
+    "processo_sei" VARCHAR(20) ,
+    "total_desebolsos" FLOAT(53),
+    "id_situacao" INTEGER ,
+    "total_atraso" FLOAT(53),
+    "total_ano" FLOAT(53) ,
+    "total_contratado" FLOAT(53) ,
+    "valor_em_dia" FLOAT(53) ,
+    "data_atrasado_em_dia" DATE  ,
+    "data_calculo_atraso" DATE  ,
     "ano_insercao" INTEGER CHECK (ano_insercao >= 2023 AND ano_insercao <= 2100),
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "ativo" CHAR(1)  DEFAULT 's'
 
 );
 ALTER TABLE
     "investimentos" ADD PRIMARY KEY("id_investimento");
 CREATE TABLE "diretoria"(
-    "id_diretoria" SERIAL NOT NULL,
-    "descricao" VARCHAR(15) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_diretoria" SERIAL   ,
+    "descricao" VARCHAR(25) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "diretoria" ADD PRIMARY KEY("id_diretoria");
 CREATE TABLE "centro_custo"(
-    "id_centro_custo" SERIAL NOT NULL,
-    "codigo" INTEGER NOT NULL,
-    "descricao" VARCHAR(15) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_centro_custo" SERIAL    ,
+    "codigo" INTEGER    ,
+    "descricao" VARCHAR(50) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "centro_custo" ADD PRIMARY KEY("id_centro_custo");
 CREATE TABLE "setor_responsavel"(
-    "id_setor_responsavel" SERIAL NOT NULL,
-    "descricao" VARCHAR(15) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_setor_responsavel" SERIAL   ,
+    "descricao" VARCHAR(15) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "setor_responsavel" ADD PRIMARY KEY("id_setor_responsavel");
 CREATE TABLE "grupo"(
-    "id_grupo" SERIAL NOT NULL,
-    "descricao" VARCHAR(100) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_grupo" SERIAL   ,
+    "descricao" VARCHAR(100)    ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "grupo" ADD PRIMARY KEY("id_grupo");
 CREATE TABLE "conta_contabil"(
-    "id_conta_contabil" SERIAL NOT NULL,
-    "descricao" VARCHAR(80) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_conta_contabil" SERIAL  ,
+    "descricao" VARCHAR(80) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "conta_contabil" ADD PRIMARY KEY("id_conta_contabil");
-CREATE TABLE "contrato"(
-    "id_contrato" SERIAL NOT NULL,
-    "descricao" VARCHAR(40) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
-);
-ALTER TABLE
-    "contrato" ADD PRIMARY KEY("id_contrato");
 CREATE TABLE "status"(
-    "id_status" SERIAL NOT NULL,
-    "descricao" VARCHAR(30) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_status" SERIAL  ,
+    "descricao" VARCHAR(30) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "status" ADD PRIMARY KEY("id_status");
 CREATE TABLE "situacao"(
-    "id_situacao" SERIAL NOT NULL,
-    "descricao" VARCHAR(30) NOT NULL,
-    "ativo" CHAR(1) NOT NULL DEFAULT 's'
+    "id_situacao" SERIAL    ,
+    "descricao" VARCHAR(30) ,
+    "ativo" CHAR(1)  DEFAULT 's'
 );
 ALTER TABLE
     "situacao" ADD PRIMARY KEY("id_situacao");
 CREATE TABLE "alteracoes"(
-    "id_alteracoes" SERIAL NOT NULL,
-    "usuario" VARCHAR(30) NOT NULL,
-    "data_alteracao" DATE NOT NULL,
-    "id_item" INTEGER NOT NULL,
-    "tipo_item" VARCHAR(15) NOT NULL
+    "id_alteracoes" SERIAL  ,
+    "usuario" VARCHAR(30)   ,
+    "data_alteracao" DATE   ,
+    "id_item" INTEGER   ,
+    "tipo_item" VARCHAR(15) 
 );
 ALTER TABLE
     "alteracoes" ADD PRIMARY KEY("id_alteracoes");
 CREATE TABLE "gastos"(
-    "id_gasto" SERIAL NOT NULL,
-    "id_diretoria" INTEGER NOT NULL,
-    "id_centro_custo" INTEGER NOT NULL,
+    "id_gasto" SERIAL   ,
+    "id_diretoria" INTEGER  ,
     "prazo_entrega_gsi" DATE NULL,
-    "id_setor_responsavel" INTEGER NOT NULL,
-    "id_grupo" INTEGER NOT NULL,
-    "id_conta_contabil" INTEGER NOT NULL,
-    "descricao" VARCHAR(250) NOT NULL,
-    "id_contrato" INTEGER NOT NULL,
-    "id_status" INTEGER NOT NULL,
-    "numero_documento" VARCHAR(80) NULL,
-    "data_reajuste" DATE NULL,
-    "data_primeiro_desembolso" DATE NOT NULL,
-    "id_situacao" INTEGER NOT NULL,
-    "processo_sei" VARCHAR(20) NULL,
-    "total_atraso" FLOAT(53) NOT NULL,
-    "estrategico" CHAR(1) NULL,
-    "data_calculo_atraso" DATE NOT NULL,
-    "total_ano" FLOAT(53) NULL,
-    "total_contratado" FLOAT(53) NULL,
-    "ano_insercao" INTEGER CHECK (ano_insercao >= 2023 AND ano_insercao <= 2100)
-);
+    "id_centro_custo" INTEGER   ,
+    "id_setor_responsavel" INTEGER  ,
+    "id_conta_contabil" INTEGER ,
+    "id_grupo" INTEGER  ,
+    "descricao" VARCHAR(250)    ,
+    "id_status" INTEGER ,
+    "data_reajuste" DATE ,
+    "numero_documento" VARCHAR(80) ,
+    "data_primeiro_desembolso" DATE  ,
+    "processo_sei" VARCHAR(20) ,
+    "total_desebolsos" FLOAT(53),
+    "id_situacao" INTEGER ,
+    "total_atraso" FLOAT(53)L,
+    "total_ano" FLOAT(53) ,
+    "total_contratado" FLOAT(53) ,
+    "valor_em_dia" FLOAT(53) ,
+    "data_atrasado_em_dia" DATE  ,
+    "data_calculo_atraso" DATE  ,
+    "ano_insercao" INTEGER CHECK (ano_insercao >= 2023 AND ano_insercao <= 2100),
+    "ativo" CHAR(1)  DEFAULT 's'
+
+    );
 ALTER TABLE
     "gastos" ADD PRIMARY KEY("id_gasto");
 CREATE TABLE "desembolso_gastos"(
-    "id_desembolso" SERIAL NOT NULL,
-    "id_gasto" INTEGER NOT NULL,
-    "data_desembolso" DATE NOT NULL,
-    "valor" FLOAT(53) NOT NULL
+    "id_desembolso" SERIAL  ,
+    "id_gasto" INTEGER  ,
+    "data_desembolso" DATE  ,
+    "valor" FLOAT(53)   
 );
 ALTER TABLE
     "desembolso_gastos" ADD PRIMARY KEY("id_desembolso");
 CREATE TABLE "desembolso_investimentos"(
-    "id_desembolso" SERIAL NOT NULL,
-    "id_investimento" INTEGER NOT NULL,
-    "data_desembolso" DATE NOT NULL,
-    "valor" FLOAT(53) NOT NULL
+    "id_desembolso" SERIAL  ,
+    "id_investimento" INTEGER   ,
+    "data_desembolso" DATE  ,
+    "valor" FLOAT(53)   
 );
 ALTER TABLE
     "desembolso_investimentos" ADD PRIMARY KEY("id_desembolso");
 CREATE TABLE "logs"(
-    "id_logs" SERIAL NOT NULL,
-    "usuario" VARCHAR(30) NOT NULL,
-    "data_entrada" DATE NOT NULL
+    "id_logs" SERIAL    ,
+    "usuario" VARCHAR(30)   ,
+    "data_entrada" DATE 
 );
 ALTER TABLE
     "logs" ADD PRIMARY KEY("id_logs");

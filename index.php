@@ -27,7 +27,7 @@ switch ($action) {
     case 'login':
         $loginController->index();
         break;
-    case 'logout':
+    case 'home':
         $homeController->index();
         break;
     case 'plurianual':

@@ -13,7 +13,7 @@
 
         <div class="btnList">
             <div class="btn">
-                <a href="http://orcamentoscaj/"><button>2024</button></a>
+                <a href="./index.php?action=home&ano_execucao=2024"><button>2024</button></a>
             </div>
             <div class="btn">
                 <a><button>2025</button></a>
