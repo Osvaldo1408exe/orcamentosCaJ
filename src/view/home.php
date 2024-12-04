@@ -6,6 +6,7 @@
     <title>Orçamentos CAJ</title>
 </head>
 <body>
+    <?php require_once 'src/includes/header.php'?>
     <h1>HOME</h1>
     
 </body>
