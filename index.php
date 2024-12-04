@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+require_once __DIR__ . '/vendor/autoload.php';  // Inclua o autoload do Composer
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);  // Carregar o arquivo .env
+$dotenv->load();  // Carregar as variáveis de ambiente do arquivo .env
+
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PlurianualController;
