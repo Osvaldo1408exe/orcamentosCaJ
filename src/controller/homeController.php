@@ -14,9 +14,9 @@ class HomeController {
     }
 
 
-    public function index($ano_insercao) {
+    public function index($orcamento,$ano_insercao) {
 
-        $orcamentos = $this->model->getOrcamentos($ano_insercao);
+        $orcamentos = $this->model->getOrcamentos($orcamento,$ano_insercao);
         // Exibe a página inicial após login
         require './src/view/home.php';
     }

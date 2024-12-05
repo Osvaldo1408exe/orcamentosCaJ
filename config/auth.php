@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($username === 'admin++' && $password === 'admin--') {
             $_SESSION['verificacao'] = true;
             var_dump($_SESSION); 
-            header("Location: ../index.php?action=plurianual"); 
+            header("Location: ../index.php?action=plurianual&orcamento=investimento"); 
             exit;
         }
 
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result_historico = pg_query($conn, $update_historico);
 
                 // Redireciona para a página Principal
-                header("Location: ../index.php?action=plurianual");
+                header("Location: ../index.php?action=plurianual&orcamento=investimento");
                 exit; // Importante: encerra o script após o redirecionamento
             } else {
                 // Falha na autenticação

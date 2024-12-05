@@ -28,7 +28,7 @@ $(document).ready(function () {
                         dropdownOptions += '<option value="' + columnData[i] + '">' + columnData[i] + '</option>';
                     }
 
-                    $(this).html('<select class="filter-dropdown" style="width: 100%">' + dropdownOptions + '</select>');
+                    $(this).html('<select class="filter-dropdown" style="width: 100%;z-index=0">' + dropdownOptions + '</select>');
                 }
             });
 

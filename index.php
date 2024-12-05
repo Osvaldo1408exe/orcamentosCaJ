@@ -29,6 +29,9 @@ $plurianualController = new PlurianualController();
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $ano_execucao = isset($_GET['ano_execucao']) ? $_GET['ano_execucao'] : ''; 
+$orcamento = isset($_GET['orcamento']) ? $_GET['orcamento'] : ''; 
+
+
 
 
 
@@ -37,7 +40,7 @@ switch ($action) {
         $loginController->index();
         break;
     case 'home':
-        $homeController->index($ano_execucao);
+        $homeController->index($orcamento ,$ano_execucao);
         break;
     case 'plurianual':
         $plurianualController->index();

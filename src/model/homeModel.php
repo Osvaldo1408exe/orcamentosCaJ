@@ -11,40 +11,41 @@ class HomeModel {
         $this->conn = $dbConn;
     }
 
-    public function getOrcamentos($ano_insercao) {
+    public function getOrcamentos($orcamento,$ano_insercao) {
         $data = date('Y');
         
         // Consulta SQL
         $query = "SELECT 
-                    investimentos.id_investimento AS id, 
-                    TO_CHAR(investimentos.prazo_entrega_gsi, 'MM/YYYY') AS prazo_entrega_gsi,
-                    investimentos.descricao AS descricao,
+                    $orcamento.id_$orcamento AS id, 
+                    TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/YYYY') AS prazo_entrega_gsi,
+                    $orcamento.descricao AS descricao,
                     situacao.descricao AS situacao, 
-                    investimentos.total_atraso AS total_atrasos, 
-                    investimentos.total_ano, 
+                    $orcamento.total_atraso AS total_atrasos, 
+                    $orcamento.total_ano, 
                     grupo.descricao AS estrategico, 
                     setor_responsavel.descricao AS setor_responsavel, 
-                    investimentos.total_contratado AS total_contratado, 
+                    $orcamento.total_contratado AS total_contratado, 
                     status.descricao AS status, 
-                    investimentos.processo_sei, 
-                    investimentos.total_desebolsos, 
-                    TO_CHAR(investimentos.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
-                    TO_CHAR(investimentos.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
+                    $orcamento.processo_sei,  
+                    TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
+                    TO_CHAR($orcamento.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
                 FROM 
-                    investimentos
+                    $orcamento
                 JOIN 
-                    situacao ON investimentos.id_situacao = situacao.id_situacao
+                    situacao ON $orcamento.id_situacao = situacao.id_situacao
                 JOIN 
-                    grupo ON investimentos.id_grupo = grupo.id_grupo
+                    grupo ON $orcamento.id_grupo = grupo.id_grupo
                 JOIN 
-                    setor_responsavel ON investimentos.id_setor_responsavel = setor_responsavel.id_setor_responsavel
+                    setor_responsavel ON $orcamento.id_setor_responsavel = setor_responsavel.id_setor_responsavel
                 JOIN 
-                    status ON investimentos.id_status = status.id_status
+                    status ON $orcamento.id_status = status.id_status
                 WHERE 
-                    investimentos.ano_insercao =  $ano_insercao
+                    $orcamento.ano_insercao = $ano_insercao
+                     
+
                 ORDER BY 
-                    investimentos.total_ano DESC, 
-                    investimentos.prazo_entrega_gsi ASC;
+                    $orcamento.total_ano DESC, 
+                    $orcamento.prazo_entrega_gsi ASC;
                 ";
 
         $result = pg_query($this->conn, $query);
