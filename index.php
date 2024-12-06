@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/02c9a8c57e.js" crossorigin="anonymous"></script>
 <?php
 session_start();
 

@@ -22,6 +22,7 @@ class HomeModel {
                     situacao.descricao AS situacao, 
                     $orcamento.total_atraso AS total_atrasos, 
                     $orcamento.total_ano, 
+                    $orcamento.id_situacao,
                     grupo.descricao AS estrategico, 
                     setor_responsavel.descricao AS setor_responsavel, 
                     $orcamento.total_contratado AS total_contratado, 
