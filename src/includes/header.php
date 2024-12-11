@@ -16,20 +16,15 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#">Ano</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="">Sem prazo de entrega</a></li>
-            <li><a class="dropdown-item" href="">2023</a></li>
-            <li><a class="dropdown-item" href="">2024</a></li>
-            <li><a class="dropdown-item" href="">2025</a></li>
-            <li><a class="dropdown-item" href="">2026</a></li>
-            <li><a class="dropdown-item" href="">2027</a></li>
-            <li><a class="dropdown-item" href="">2028</a></li>
-            <li><a class="dropdown-item" href="">2029</a></li>
-            <li><a class="dropdown-item" href="">2030</a></li>
-            <li><a class="dropdown-item" href="">2031</a></li>
-            <li><a class="dropdown-item" href="">2032</a></li>
-            <li><a class="dropdown-item" href="">2033</a></li>
-            <li><a class="dropdown-item" href="">2034</a></li>
-
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>">Sem prazo de entrega</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2023">2023</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2024">2024</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2025">2025</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2026">2026</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2027">2027</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2028">2028</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2029">2029</a></li>
+            
             <!-- Restante dos anos -->
           </ul>
         </li>
@@ -38,8 +33,14 @@
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#">Ano</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="http://orcamentoscaj/desembolsos/ano/semprazo.php">Sem prazo de entrega</a></li>
-            <li><a class="dropdown-item" href="http://orcamentoscaj/desembolsos/ano/2023.php">2023</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>">Sem prazo de entrega</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2023">2023</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2024">2024</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2025">2025</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2026">2026</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2027">2027</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2028">2028</a></li>
+            <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&ano_prazo=2029">2029</a></li>
             
             <!-- Restante dos anos -->
           </ul>

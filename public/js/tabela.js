@@ -44,4 +44,28 @@ $(document).ready(function () {
 
         table.column(columnIndex).search(filterValue).draw();
     });
+
+
+    
+// cor para os dados
+
+const situacoes = document.querySelectorAll('.situacao');
+
+// Itera pelos elementos
+situacoes.forEach((situacaoElement) => {
+    // Verifica se o texto do elemento é "Contratado"
+    if (situacaoElement.textContent.trim() === "Contratado") {
+        situacaoElement.classList.add('contratado');
+    }else if (situacaoElement.textContent.trim() === "Atrasado") {
+        situacaoElement.classList.add('atrasado');
+    }else if (situacaoElement.textContent.trim() === "Em dia") {
+        situacaoElement.classList.add('emdia');
+    }else if (situacaoElement.textContent.trim() === "Reprogramado") {
+        situacaoElement.classList.add('reprogramado');
+    }
+
 });
+
+});
+
+ 

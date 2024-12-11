@@ -109,10 +109,36 @@ button{
     outline: none;
 }
 
+.filter-dropdown th{
+    text-align: center;
+}
+
 .form-group select{
     padding: 5px;
     width: auto;
     outline: none;
+}
+
+.situacao.contratado{
+    color: white;
+    background-color: #0056b3;
+}
+
+.situacao.atrasado{
+    color: white;
+    background-color: rgb(180, 43, 43);;
+}
+
+
+.situacao.emdia{
+    color: rgb(0, 0, 0);
+    background-color: rgb(226, 223, 31);;
+}
+
+
+.situacao.atrasado{
+    color: white;
+    background-color: rgb(180, 43, 43);;
 }
 
 

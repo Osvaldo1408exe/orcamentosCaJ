@@ -1,4 +1,4 @@
-const currantYear = new Date().getFullYear();  
+const currantYear = new Date().getFullYear() + 1;  
 const buttons = document.querySelectorAll('.btn button');  
  
 buttons.forEach(button => {

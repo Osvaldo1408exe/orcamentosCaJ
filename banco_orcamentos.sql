@@ -110,7 +110,7 @@ ALTER TABLE
     );
 ALTER TABLE
     "gastos" ADD PRIMARY KEY("id_gasto");
-CREATE TABLE "desembolso_gastos"(
+CREATE TABLE "desembolso_gasto"(
     "id_desembolso" SERIAL  ,
     "id_gasto" INTEGER  ,
     "data_desembolso" DATE  ,
@@ -118,7 +118,7 @@ CREATE TABLE "desembolso_gastos"(
 );
 ALTER TABLE
     "desembolso_gastos" ADD PRIMARY KEY("id_desembolso");
-CREATE TABLE "desembolso_investimentos"(
+CREATE TABLE "desembolso_investimento"(
     "id_desembolso" SERIAL  ,
     "id_investimento" INTEGER   ,
     "data_desembolso" DATE  ,

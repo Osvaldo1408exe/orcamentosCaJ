@@ -53,18 +53,20 @@
                                 data-processo_sei='<?php echo $orcamento['processo_sei']; ?>'>
                                 Editar
                             </button>
-                            <button class='desembolsos' 
-                                data-id='<?php echo $row['id']; ?>'>
-                                Desembolsos
-                            </button>
+                            <a href='./index.php?action=desembolsos&orcamento=<?php echo $_GET['orcamento']?>&id=<?php echo $orcamento['id']; ?>&ano_execucao=<?php echo $_GET['ano_execucao']; ?>' >
+                                <button class='desembolsos' 
+                                >
+                                    Desembolsos
+                                </button>
+                            </a>
                         </td>
                         <td><?php echo $orcamento['prazo_entrega_gsi']; ?></td>
                         <td><?php echo $orcamento['setor_responsavel']; ?></td>
                         <td><?php echo $orcamento['descricao']; ?></td>
-                        <td><?php echo $orcamento['situacao']; ?></td>
+                        <td class="situacao"><?php echo $orcamento['situacao']; ?></td>
                         <td><?php echo $orcamento['primeiro_desembolso']; ?></td>
-                        <td><?php echo $orcamento['total_ano']; ?></td>
-                        <td><?php echo $orcamento['total_atrasos']; ?></td>
+                        <td>R$<?php echo str_replace(',', '.', number_format($orcamento['total_ano'])); ?></td>
+                        <td>R$<?php echo str_replace(',', '.', number_format($orcamento['total_atrasos'])); ?></td>
                         <td><?php echo $orcamento['processo_sei']; ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -72,7 +74,6 @@
         </tbody>
     </table>
 </div>
-
     <!-- Modal de Edição -->
     <div class="modal" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -81,8 +82,9 @@
                     <h5 class="modal-title text-center">Editar</h5>
                 </div>
                 <div class="modal-body">
-                    <form id="formEdicao" action="" method="POST">
+                    <form id="formEdicao" action="./index.php?action=update" method="POST">
                         <input type="hidden" id="edit-id" name="id">
+                        <input type="hidden" id="edit-table" name="orcamento" value="<?php echo $_GET['orcamento']?>">
                         <div class="form-group">
                             <label for="edit-processo_sei">Processo SEI</label>
                             <input type="text" class="form-control" id="processoSei" placeholder="00.0.000000-0" name="processo_sei" onfocus="mask()" maxlength="13" required>
