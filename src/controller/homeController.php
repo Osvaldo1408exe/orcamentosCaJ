@@ -21,7 +21,9 @@ class HomeController {
                 $orcamento = $_GET['orcamento'] ?? null;
                 $ano_insercao = $_GET['ano_insercao'] ?? null;
                 $ano_prazo = $_GET['ano_insercao'] ?? null;
-                $this->index($orcamento, $ano_insercao,$ano_prazo);
+                $setor = $_GET['setor'] ?? null;
+
+                $this->index($orcamento, $ano_insercao,$ano_prazo,$setor);
                 break;
 
             case 'update':
@@ -45,8 +47,8 @@ class HomeController {
 
     
 
-    public function index($orcamento, $ano_insercao, $ano_prazo) {
-        $orcamentos = $this->model->getOrcamentos($orcamento, $ano_insercao, $ano_prazo);
+    public function index($orcamento, $ano_insercao, $ano_prazo,$setor) {
+        $orcamentos = $this->model->getOrcamentos($orcamento, $ano_insercao, $ano_prazo,$setor);
         require './src/view/home.php';
     }
 

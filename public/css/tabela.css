@@ -2,9 +2,7 @@
 .table-container {
     margin: 20px;
     overflow-x: auto;
-    margin-top: 3%;
-
- 
+    margin-top: 2%;
 }
 
 
@@ -14,16 +12,19 @@
 }
 
 .table th, .table td {
-    padding: 12px;
+    
+    padding: 5px;
     text-align: center;
 }
 
 .table th {
+    font-size: 16px;
     background-color: #343a40;
     color: white;
 }
 
 .table td {
+    font-size: 14px;
     border: 1px solid #ddd;
 }
 
@@ -114,6 +115,7 @@ button{
 }
 
 .form-group select{
+    
     padding: 5px;
     width: auto;
     outline: none;
@@ -141,6 +143,18 @@ button{
     background-color: rgb(180, 43, 43);;
 }
 
+
+
+.situacao.reprogramado{
+    color: white;
+    background-color: #d87626ec;
+}
+
+
+.situacao.naoiniciado{
+    color: white;
+    background-color: #53c23dec;
+}
 
 #fechar-edicao, #salvar-edicao {
     margin-top: 40px;

@@ -30,7 +30,7 @@
                 <th class="col text-center"></th>
                 <th class="col text-center">Prazo GSL</th>
                 <th class="col text-center">Responsável</th>
-                <th class="col text-center">Investimento</th>
+                <th class="col text-center">Descrição</th>
                 <th class="col text-center">Situação</th>
                 <th class="col text-center">1° Desembolso</th>
                 <th class="col text-center">Total <?php echo date('Y');?></th>
@@ -41,7 +41,7 @@
         <tbody>
             <?php if (empty($orcamentos)): ?>
                 <tr>
-                    <td colspan="8" class="text-center">Nenhum registro encontrado para esse ano de execução</td>
+                    <td colspan="10" class="text-center">Nenhum registro encontrado para esse ano de execução</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($orcamentos as $orcamento): ?>

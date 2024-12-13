@@ -48,19 +48,19 @@
         <?php endif?>
       
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#">Desembolsos</a>
+          <a class="nav-link dropdown-toggle" href="#">Setor</a>
           <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/ciop.php">CIOP</a></li>
-              <li><a class="dropdown-item" href="/cme.php">CME</a></li>
-              <li><a class="dropdown-item" href="/gag.php">GAG</a></li>
-              <li><a class="dropdown-item" href="/ges.php">GES</a></li>
-              <li><a class="dropdown-item" href="/gex.php">GEX</a></li>
-              <li><a class="dropdown-item" href="/gfc.php">GFC</a></li>
-              <li><a class="dropdown-item" href="/gms.php">GMS</a></li>
-              <li><a class="dropdown-item" href="/gqm.php">GQM</a></li>
-              <li><a class="dropdown-item" href="/gri.php">GRI</a></li>
-              <li><a class="dropdown-item" href="/gsl.php">GSL</a></li>
-              <li><a class="dropdown-item" href="/gti.php">GTI</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=CIOP">CIOP</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=CME">CME</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GAG">GAG</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GES">GES</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GEX">GEX</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GFC">GFC</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GMS">GMS</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GQM">GQM</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GRI">GRI</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GSL">GSL</a></li>
+              <li><a class="dropdown-item" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>&setor=GTI">GTI</a></li>
                 
             <!-- Restante dos itens -->
           </ul>
@@ -75,12 +75,12 @@
 
         <?php if($_GET['orcamento'] == 'investimento'):?>
           <li class="nav-item">
-            <a class="nav-link" href="./index.php?action=home&orcamento=gasto&ano_execucao=2024">Ir para: Gastos</a>
+            <a class="nav-link" href="./index.php?action=home&orcamento=gasto&ano_execucao=<?php echo $_GET['ano_execucao']?>">Ir para: Gastos</a>
           </li>
 
         <?php else:?>
           <li class="nav-item">
-            <a class="nav-link" href="./index.php?action=home&orcamento=investimento&ano_execucao=2024">Ir para: Investimentos</a>
+            <a class="nav-link" href="./index.php?action=home&orcamento=investimento&ano_execucao=<?php echo $_GET['ano_execucao']?>">Ir para: Investimentos</a>
           </li>
 
         
@@ -96,7 +96,7 @@
         </li>
 
         <li class="nav-item">
-          <form method="post" action="logout.php">
+          <form method="post" action="./index.php?action=logoff">
             <button id="cacheBtn" class="nav-link">Sair</button>
           </form>
         </li>

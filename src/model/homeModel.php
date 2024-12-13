@@ -11,75 +11,46 @@ class HomeModel {
         $this->conn = $dbConn;
     }
 
-    public function getOrcamentos($orcamento,$ano_insercao,$ano_prazo) {
-        if(empty($ano_prazo)){
-            // Consulta SQL
-            $query = "SELECT 
-            $orcamento.id_$orcamento AS id, 
-            TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/YYYY') AS prazo_entrega_gsi,
-            $orcamento.descricao AS descricao,
-            situacao.descricao AS situacao, 
-            $orcamento.total_atraso AS total_atrasos, 
-            $orcamento.total_ano, 
-            $orcamento.id_situacao,
-            grupo.descricao AS estrategico, 
-            setor_responsavel.descricao AS setor_responsavel, 
-            $orcamento.total_contratado AS total_contratado, 
-            status.descricao AS status, 
-            $orcamento.processo_sei,  
-            TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
-            TO_CHAR($orcamento.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
-            FROM 
-                $orcamento
-            JOIN 
-                situacao ON $orcamento.id_situacao = situacao.id_situacao
-            JOIN 
-                grupo ON $orcamento.id_grupo = grupo.id_grupo
-            JOIN 
-                setor_responsavel ON $orcamento.id_setor_responsavel = setor_responsavel.id_setor_responsavel
-            JOIN 
-                status ON $orcamento.id_status = status.id_status
-            WHERE 
-                $orcamento.ano_insercao = $ano_insercao 
-            ORDER BY 
-                $orcamento.total_ano DESC, 
-                $orcamento.prazo_entrega_gsi ASC;
-            ";
-        }else{
-            // Consulta SQL
-            $query = "SELECT 
-            $orcamento.id_$orcamento AS id, 
-            TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/YYYY') AS prazo_entrega_gsi,
-            $orcamento.descricao AS descricao,
-            situacao.descricao AS situacao, 
-            $orcamento.total_atraso AS total_atrasos, 
-            $orcamento.total_ano, 
-            $orcamento.id_situacao,
-            grupo.descricao AS estrategico, 
-            setor_responsavel.descricao AS setor_responsavel, 
-            $orcamento.total_contratado AS total_contratado, 
-            status.descricao AS status, 
-            $orcamento.processo_sei,  
-            TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
-            TO_CHAR($orcamento.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
-            FROM 
-                $orcamento
-            JOIN 
-                situacao ON $orcamento.id_situacao = situacao.id_situacao
-            JOIN 
-                grupo ON $orcamento.id_grupo = grupo.id_grupo
-            JOIN 
-                setor_responsavel ON $orcamento.id_setor_responsavel = setor_responsavel.id_setor_responsavel
-            JOIN 
-                status ON $orcamento.id_status = status.id_status
-            WHERE 
-                $orcamento.ano_insercao = $ano_insercao AND
-                EXTRACT(YEAR FROM $orcamento.prazo_entrega_gsi) = $ano_prazo
-            ORDER BY 
-                $orcamento.total_ano DESC, 
-                $orcamento.prazo_entrega_gsi ASC;
-            ";
-        }
+    public function getOrcamentos($orcamento,$ano_insercao,$ano_prazo,$setor) {
+        //consulta adiciona filtro por ano de vencimento
+        $query = "SELECT 
+        $orcamento.id_$orcamento AS id, 
+        TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/YYYY') AS prazo_entrega_gsi,
+        $orcamento.descricao AS descricao,
+        situacao.descricao AS situacao, 
+        $orcamento.total_atraso AS total_atrasos, 
+        $orcamento.total_ano, 
+        $orcamento.id_situacao,
+        setor_responsavel.descricao AS setor_responsavel, 
+        $orcamento.total_contratado AS total_contratado, 
+        status.descricao AS status, 
+        $orcamento.processo_sei,  
+        TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
+        TO_CHAR($orcamento.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
+        FROM 
+            $orcamento
+        JOIN 
+            situacao ON $orcamento.id_situacao = situacao.id_situacao
+        JOIN 
+            setor_responsavel ON $orcamento.id_setor_responsavel = setor_responsavel.id_setor_responsavel
+        JOIN 
+            status ON $orcamento.id_status = status.id_status
+        WHERE 1=1";
+    
+    if (!empty($ano_insercao)) {
+        $query .= " AND $orcamento.ano_insercao = $ano_insercao";
+    }
+    
+    if (!empty($ano_prazo)) {
+        $query .= " AND EXTRACT(YEAR FROM $orcamento.prazo_entrega_gsi) = $ano_prazo";
+    }
+    
+    if (!empty($setor)) {
+        $query .= " AND setor_responsavel.descricao = '$setor'";
+    }
+    
+    $query .= " ORDER BY $orcamento.total_ano DESC, $orcamento.prazo_entrega_gsi ASC;";
+    
         
         
 

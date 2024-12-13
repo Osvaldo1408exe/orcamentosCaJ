@@ -28,9 +28,10 @@ $(document).ready(function () {
                         dropdownOptions += '<option value="' + columnData[i] + '">' + columnData[i] + '</option>';
                     }
 
-                    $(this).html('<select class="filter-dropdown" style="width: 100%;z-index=0">' + dropdownOptions + '</select>');
+                    $(this).html('<select class="filter-dropdown" style="width: 100%;z-index=0;position: fixed;">' + dropdownOptions + '</select>');
                 }
-            });
+            });    
+
 
             // Inicializa os dropdowns com a biblioteca select2
             $(".filter-dropdown").select2();
@@ -62,6 +63,8 @@ situacoes.forEach((situacaoElement) => {
         situacaoElement.classList.add('emdia');
     }else if (situacaoElement.textContent.trim() === "Reprogramado") {
         situacaoElement.classList.add('reprogramado');
+    }else if (situacaoElement.textContent.trim() === "Processo não iniciado	") {
+        situacaoElement.classList.add('naoiniciado');
     }
 
 });

@@ -15,6 +15,18 @@ require_once './config/database.php';
 
 
 
+// Verificar autenticação antes de qualquer ação
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+if (!isset($_SESSION['auth']) || $_SESSION['auth'] != true) {
+    // Permite apenas a página de login sem autenticação
+    if ($action !== 'login') {
+        header('Location: index.php?action=login');
+        exit();
+    }
+}
+
+
+
 //controlllers
 $loginController = new LoginController();
 $homeController = new HomeController($conn);
@@ -28,6 +40,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : ''; 
 $ano_execucao = isset($_GET['ano_execucao']) ? $_GET['ano_execucao'] : ''; 
 $ano_prazo = isset($_GET['ano_prazo']) ? $_GET['ano_prazo'] : ''; 
+$setor = isset($_GET['setor']) ? $_GET['setor'] : ''; 
 $orcamento = isset($_GET['orcamento']) ? $_GET['orcamento'] : ''; 
 
 
@@ -38,8 +51,11 @@ switch ($action) {
     case 'login':
         $loginController->index();
         break;
+    case 'logoff':
+        $loginController->logout();
+        break;
     case 'home':
-        $homeController->index($orcamento ,$ano_execucao,$ano_prazo);
+        $homeController->index($orcamento ,$ano_execucao,$ano_prazo,$setor);
         break;
     case 'update':
         $homeController->route('update');
@@ -51,10 +67,8 @@ switch ($action) {
         $plurianualController->index();
         break;
     default:
-        if (!isset($_SESSION['user'])) {
-            header('Location: index.php?action=login');
-            exit();
-        }
+        header('Location: index.php?action=home');
+        exit();
 
 }
 ?>

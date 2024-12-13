@@ -12,20 +12,23 @@
     <?php $orcamento = isset($_GET['orcamento']) ? $_GET['orcamento'] : '';?>
 
     <div class="container">
-        <h1>Deseja visualizar os orçamentos de:</h1>
+        <h1>Deseja visualizar os orçamentos a partir de:</h1>
 
         <div class="btnList">
             <div class="btn">
                 <a href="./index.php?action=home&orcamento=<?php echo $orcamento?>&ano_execucao=2024"><button>2024</button></a>
             </div>
             <div class="btn">
-                <a><button>2025</button></a>
+                <a href="./index.php?action=home&orcamento=<?php echo $orcamento?>&ano_execucao=2025"><button>2025</button></a>
             </div>
             <div class="btn">
-                <a><button>2026</button></a>
+                <a href="./index.php?action=home&orcamento=<?php echo $orcamento?>&ano_execucao=2026"><button>2026</button></a>
             </div>
             <div class="btn">
-                <a><button>2027</button></a>
+                <a href="./index.php?action=home&orcamento=<?php echo $orcamento?>&ano_execucao=2027"><button>2027</button></a>
+            </div>
+            <div class="btn">
+                <a href="./index.php?action=home&orcamento=<?php echo $orcamento?>&ano_execucao=2028"><button>2028</button></a>
             </div>
             
         </div>
