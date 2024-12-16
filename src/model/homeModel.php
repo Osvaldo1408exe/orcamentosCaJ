@@ -12,6 +12,11 @@ class HomeModel {
     }
 
     public function getOrcamentos($orcamento,$ano_insercao,$ano_prazo,$setor) {
+        //atualiza os dados antes de enviar
+        $this->atualizaSituacao();
+        
+
+
         //consulta adiciona filtro por ano de vencimento
         $query = "SELECT 
         $orcamento.id_$orcamento AS id, 
@@ -37,22 +42,21 @@ class HomeModel {
             status ON $orcamento.id_status = status.id_status
         WHERE 1=1";
     
-    if (!empty($ano_insercao)) {
-        $query .= " AND $orcamento.ano_insercao = $ano_insercao";
-    }
-    
-    if (!empty($ano_prazo)) {
-        $query .= " AND EXTRACT(YEAR FROM $orcamento.prazo_entrega_gsi) = $ano_prazo";
-    }
-    
-    if (!empty($setor)) {
-        $query .= " AND setor_responsavel.descricao = '$setor'";
-    }
-    
-    $query .= " ORDER BY $orcamento.total_ano DESC, $orcamento.prazo_entrega_gsi ASC;";
-    
+        if (!empty($ano_insercao)) {
+            $query .= " AND $orcamento.ano_insercao = $ano_insercao";
+        }
         
+        if (!empty($ano_prazo)) {
+            $query .= " AND EXTRACT(YEAR FROM $orcamento.prazo_entrega_gsi) = $ano_prazo";
+        }
         
+        if (!empty($setor)) {
+            $query .= " AND setor_responsavel.descricao = '$setor'";
+        }
+
+        
+        $query .= " ORDER BY $orcamento.total_ano DESC, $orcamento.prazo_entrega_gsi ASC;";
+    
 
         $result = pg_query($this->conn, $query);
 
@@ -79,6 +83,36 @@ class HomeModel {
             die("Erro no update: " . pg_last_error());
         }
 
+    }
+
+
+
+
+    //funções auxiliares
+
+    //com base em arrays atualiza as tabelas caso estejam atrasadas ou em dia
+    public function atualizaSituacao(){
+        $tabelas = ['investimento', 'gasto'];
+        
+        $condicoes = [
+            "SET id_situacao = 4 
+            WHERE TO_CHAR(prazo_entrega_gsi, 'YYYY-MM') = TO_CHAR(CURRENT_DATE, 'YYYY-MM')
+            AND processo_sei IS NULL
+            AND id_status IN (1, 6, 2)",
+    
+            "SET id_situacao = 2 
+            WHERE prazo_entrega_gsi < CURRENT_DATE
+            AND processo_sei IS NULL
+            AND id_status IN (1, 6, 2)"
+        ];
+    
+        // Itera sobre cada tabela e aplica as condições
+        foreach ($tabelas as $tabela) {
+            foreach ($condicoes as $condicao) {
+                $query = "UPDATE $tabela $condicao";
+                $result = pg_query($this->conn, $query);
+            }
+        }    
     }
 }
 ?>
