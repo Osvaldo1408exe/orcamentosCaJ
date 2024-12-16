@@ -1,6 +1,7 @@
 CREATE TABLE "investimentos"(
     "id_investimento" SERIAL,
     "id_diretoria" INTEGER  ,
+    "prazo_entrega_gqm" DATE NULL   ,
     "prazo_entrega_gsi" DATE NULL,
     "id_centro_custo" INTEGER   ,
     "id_setor_responsavel" INTEGER  ,
@@ -90,6 +91,7 @@ ALTER TABLE
     "id_gasto" SERIAL   ,
     "id_diretoria" INTEGER  ,
     "id_centro_custo" INTEGER   ,
+    "prazo_entrega_gqm" DATE NULL   ,
     "prazo_entrega_gsi" DATE NULL,
     "id_setor_responsavel" INTEGER  ,
     "id_grupo" INTEGER  ,
