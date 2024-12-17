@@ -21,6 +21,13 @@
 <body>
     <!-- header -->
     <?php require_once 'src/includes/header.php'?>
+
+    <!-- Tela de carregamento -->
+    <div class="loading-screen">
+        <div id="loader" class="loader"></div>
+        <div class="loading-text">Carregando...</div>
+    </div>
+
     
     <!-- tabela -->
     <div class="table-container">
@@ -108,5 +115,7 @@
             </div>
         </div>
     </div>
+    <script src="./public/js/loader.js"></script>
+
 </body>
 </html>

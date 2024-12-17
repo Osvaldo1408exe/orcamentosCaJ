@@ -45,6 +45,7 @@
             <?php endif; ?>
         </tbody>
     </table>
+    <a class="btnBack" href="<?php echo $_SERVER['HTTP_REFERER']?>">Voltar</a>
 </div>
 </body>
 </html>
