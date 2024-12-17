@@ -1,0 +1,42 @@
+/* Estilos para o texto principal */
+.titulo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Listagem de status */
+.lista-status {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lista-status li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Cores para os status */
+.nao-iniciado {
+    color: #000;
+}
+
+.em-dia {
+    color: #ffc107; /* Amarelo */
+}
+
+.atrasado {
+    color: #dc3545; /* Vermelho */
+}
+
+.contratado {
+    color: #53ceff; /* Azul */
+}
+
+/* Adiciona margens e formatação */
+.container {
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+}

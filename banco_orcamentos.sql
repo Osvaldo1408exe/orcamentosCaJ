@@ -23,6 +23,8 @@ CREATE TABLE "investimentos"(
     "data_calculo_atraso" DATE  ,
     "ano_insercao" INTEGER CHECK (ano_insercao >= 2023 AND ano_insercao <= 2100),
     "ativo" CHAR(1)  DEFAULT 's'
+    "updated_at" DATE NULL
+
 
 );
 ALTER TABLE
@@ -108,6 +110,8 @@ ALTER TABLE
     "total_contratado" FLOAT(53) ,
     "ano_insercao" INTEGER CHECK (ano_insercao >= 2023 AND ano_insercao <= 2100),
     "ativo" CHAR(1)  DEFAULT 's'
+    "updated_at" DATE NULL
+
 
     );
 ALTER TABLE

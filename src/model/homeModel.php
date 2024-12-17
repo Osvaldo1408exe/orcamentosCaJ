@@ -13,7 +13,10 @@ class HomeModel {
 
     public function getOrcamentos($orcamento,$ano_insercao,$ano_prazo,$setor) {
         //atualiza os dados antes de enviar
-        $this->atualizaSituacao();
+         $this->atualizaSituacao();
+
+        // 
+        // $this->atualizaTotalAno();
         
 
 
@@ -29,7 +32,8 @@ class HomeModel {
         setor_responsavel.descricao AS setor_responsavel, 
         $orcamento.total_contratado AS total_contratado, 
         status.descricao AS status, 
-        $orcamento.processo_sei,  
+        $orcamento.processo_sei,
+        TO_CHAR($orcamento.updated_at, 'MM/yyyy') AS updated_at,  
         TO_CHAR($orcamento.prazo_entrega_gsi, 'MM/yyyy') AS prazo_entrega_gsl_formatado, 
         TO_CHAR($orcamento.data_primeiro_desembolso, 'MM/YYYY') AS primeiro_desembolso
         FROM 
@@ -64,7 +68,6 @@ class HomeModel {
             die("Erro na consulta ao banco de dados: " . pg_last_error());
         }
 
-        // Armazenar os resultados em um array
         $orcamentos = [];
         while ($row = pg_fetch_assoc($result)) {
             $orcamentos[] = $row;
@@ -73,6 +76,8 @@ class HomeModel {
         return $orcamentos;
     }
 
+
+    //atualiza os dados
     public function updateOrcamentos($orcamento,$id,$processoSei,$situacao){
         $query = "UPDATE $orcamento 
             SET processo_sei='$processoSei',id_situacao='$situacao'
@@ -110,9 +115,28 @@ class HomeModel {
         foreach ($tabelas as $tabela) {
             foreach ($condicoes as $condicao) {
                 $query = "UPDATE $tabela $condicao";
-                $result = pg_query($this->conn, $query);
+                pg_query($this->conn, $query);
             }
         }    
     }
+
+    // public function atualizaCustoAtraso(){
+    //     $tabelas = ['investimento', 'gasto'];
+    //     $anoAtual = date("Y");
+
+    //     foreach($tabelas as $tabela){
+    //         $orcamentos = $this->getOrcamentos($tabela,$anoAtual,null,null);
+    //         if($orcamentos['updated_at'] != date("MM/YYYY")){
+    //             foreach($orcamentos as $orcamento){
+                     
+    //             }
+    //         }    
+    //     }
+
+        
+    // }
+
+ 
+    
 }
 ?>

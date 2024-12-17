@@ -11,6 +11,6 @@ window.addEventListener("load", function () {
                 loadingScreen.style.display = "none";
                 content.style.display = "block";
             }, 500); 
-        }, 700); // Tempo para manter a tela de carregamento visível (700 ms)
+        }, 400); // Tempo para manter a tela de carregamento visível (700 ms)
     }
 });

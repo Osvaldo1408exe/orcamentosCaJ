@@ -6,9 +6,12 @@ use App\Controller\DesembolsosController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PlurianualController;
+use App\Controller\AjudaController;
+
 
 require_once './src/controller/loginController.php';
 require_once './src/controller/homeController.php';
+require_once './src/controller/ajudaController.php';
 require_once './src/controller/desembolsosController.php';
 require_once './src/controller/plurianualController.php';
 require_once './config/database.php';
@@ -29,6 +32,7 @@ if (!isset($_SESSION['auth']) || $_SESSION['auth'] != true) {
 
 //controlllers
 $loginController = new LoginController();
+$ajudaController = new AjudaController();
 $homeController = new HomeController($conn);
 $plurianualController = new PlurianualController();
 $desembolsoController = new DesembolsosController($conn);
@@ -62,6 +66,9 @@ switch ($action) {
         break;
     case 'desembolsos':
         $desembolsoController->index($orcamento,$id);
+        break;
+    case 'ajuda':
+        $ajudaController->index();
         break;
     case 'plurianual':
         $plurianualController->index();

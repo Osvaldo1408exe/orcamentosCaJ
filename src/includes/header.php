@@ -92,7 +92,7 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="">Help</a>
+          <a class="nav-link" href="./index.php?action=ajuda&orcamento=<?php echo $_GET['orcamento']?>&ano_execucao=<?php echo $_GET['ano_execucao']?>">Help</a>
         </li>
 
         <li class="nav-item">
