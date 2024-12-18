@@ -18,10 +18,5 @@ class LoginController {
         exit();       
     }
 
-
-
-
-
-
 }
 ?>

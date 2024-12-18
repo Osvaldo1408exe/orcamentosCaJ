@@ -5,7 +5,12 @@
 </style>
 <nav class="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="./index.php?action=plurianual&orcamento=investimento&ano_execucao=2024">Investimentos</a>
+    <?php if($_GET['orcamento'] == 'investimento'):?>
+      <a class="navbar-brand" href="./index.php?action=plurianual&orcamento=investimento&ano_execucao=2024">Investimentos <?php echo $_GET['ano_execucao']?></a>
+    <?php else:?>
+      <a class="navbar-brand" href="./index.php?action=plurianual&orcamento=investimento&ano_execucao=2024">Gastos <?php echo $_GET['ano_execucao']?></a>
+    <?php endif?>
+
     <button class="navbar-toggler" onclick="toggleNavbar()" aria-label="Toggle navigation" aria-expanded="false">
       <span>☰</span>
     </button>

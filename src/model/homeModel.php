@@ -13,10 +13,9 @@ class HomeModel {
 
     public function getOrcamentos($orcamento,$ano_insercao,$ano_prazo,$setor) {
         //atualiza os dados antes de enviar
-         $this->atualizaSituacao();
-
-        // 
-        // $this->atualizaTotalAno();
+        $this->atualizaSituacao();
+        $this->atualizaCustoAtraso();
+      
         
 
 
@@ -59,7 +58,7 @@ class HomeModel {
         }
 
         
-        $query .= " ORDER BY $orcamento.total_ano DESC, $orcamento.prazo_entrega_gsi ASC;";
+        $query .= " ORDER BY $orcamento.id_situacao, $orcamento.prazo_entrega_gsi ASC;";
     
 
         $result = pg_query($this->conn, $query);
@@ -120,21 +119,67 @@ class HomeModel {
         }    
     }
 
-    // public function atualizaCustoAtraso(){
-    //     $tabelas = ['investimento', 'gasto'];
-    //     $anoAtual = date("Y");
 
-    //     foreach($tabelas as $tabela){
-    //         $orcamentos = $this->getOrcamentos($tabela,$anoAtual,null,null);
-    //         if($orcamentos['updated_at'] != date("MM/YYYY")){
-    //             foreach($orcamentos as $orcamento){
-                     
-    //             }
-    //         }    
-    //     }
 
+
+
+    public function atualizaCustoAtraso() {
+        $tabelas = ['investimento', 'gasto'];
+        $hoje = date("Y-m-d");
+       
+
+        foreach ($tabelas as $tabela) {
+           //faz consulta para recuperação do dados
+            $query = "SELECT * from $tabela";
+            $result = pg_query($this->conn, $query);
+            if (!$result) {
+                die("Erro na consulta ao banco de dados: " . pg_last_error());
+            }
+            $orcamentos = [];
+            while ($row = pg_fetch_assoc($result)) {
+                $orcamentos[] = $row;
+            } 
+
+    
+            foreach ($orcamentos as $orcamento) {
+                if($orcamento['updated_at'] != $hoje){
+
+                    $idTabela = $orcamento['id_' . $tabela];
+    
+                    // Monta o SQL para atualizar o custo de atraso
+                    $sql = "UPDATE $tabela
+                        SET total_atraso = (
+                            SELECT SUM(valor)
+                            FROM desembolso_$tabela
+                            WHERE desembolso_$tabela.id_$tabela = $tabela.id_$tabela
+                              AND desembolso_$tabela.data_desembolso < CURRENT_DATE)
+                        WHERE ($tabela.id_$tabela = {$idTabela})
+                          AND ($tabela.processo_sei IS NULL)
+                          AND ($tabela.id_situacao IN (2, 3, 4));
+                    ";
         
-    // }
+                    // Executa a consulta SQL
+                    $result = pg_query($this->conn, $sql);
+
+                    $sqlUpdated = "UPDATE $tabela 
+                        SET updated_at = '$hoje'";
+
+                    $resultUpdated = pg_query($this->conn, $sqlUpdated);
+        
+                    if (!$resultUpdated) {
+                        die("Erro ao atualizar custo de atraso na tabela $tabela: " . pg_last_error($this->conn));
+                    }
+
+
+                }
+
+            }
+        }
+    }
+
+    
+    
+    
 
  
     

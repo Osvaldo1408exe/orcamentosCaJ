@@ -16,16 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //apagar após terminado
         if ($username === 'admin++' && $password === 'admin--') {
-            $_SESSION['verificacao'] = true;
+            $_SESSION['auth'] = true;
             var_dump($_SESSION); 
             header("Location: ../index.php?action=plurianual&orcamento=investimento"); 
             exit;
         }
 
 
-        $ldap_server = $_ENV['LDAP_SERVER'];
-        $ldap_port = $_ENV['LDAP_PORT']; 
-        $ldap_user = $_ENV['LDAP_DOMAIN'] .  $username;
+        $ldap_server =  "";
+        $ldap_port = " "; 
+        $ldap_user = " \\" .  $username;
         
         // Tenta se conectar ao servidor LDAP
         $ldap_conn = ldap_connect($ldap_server, $ldap_port);
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (ldap_bind($ldap_conn, $ldap_user, $password)) {
                 // Autenticação bem-sucedida
                 
-                $_SESSION['verificacao'] = true; 
+                $_SESSION['auth'] = true; 
                 $_SESSION['username'] = $username;
 
 

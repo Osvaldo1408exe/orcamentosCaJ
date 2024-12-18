@@ -179,3 +179,9 @@ ALTER TABLE
     "desembolso_gastos" ADD CONSTRAINT "desembolso_gastos_id_gasto_foreign" FOREIGN KEY("id_gasto") REFERENCES "gastos"("id_gasto");
 ALTER TABLE
     "investimento" ADD CONSTRAINT "investimentos_id_diretoria_foreign" FOREIGN KEY("id_diretoria") REFERENCES "diretoria"("id_diretoria");
+
+
+
+CREATE INDEX idx_id_investimento ON desembolso_investimento(id_investimento);
+CREATE INDEX idx_data_desembolso ON desembolso_investimento(data_desembolso);
+CREATE INDEX idx_id_situacao ON investimento(id_situacao);
